@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Security Log Analyzer | SOC Platform</title>
+    <meta name="description" content="Cybersecurity platform that automatically collects, analyzes, and monitors security logs in real time using Artificial Intelligence and Machine Learning.">
+    
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            900: '#0B0F17',
+                            800: '#111827',
+                            700: '#1F2937',
+                            600: '#374151',
+                            accent: '#06B6D4',
+                            glow: '#3B82F6',
+                            danger: '#EF4444',
+                            warning: '#F59E0B',
+                            success: '#10B981'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts: Outfit & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- React 18 & ReactDOM & Babel CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #090D16;
+            color: #E2E8F0;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-border-cyan {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+        .glow-border-red {
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1F2937;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+    </style>
+</head>
+<body class="bg-[#090D16] text-slate-100 min-h-screen antialiased selection:bg-cyan-500 selection:text-black">
+    <div id="root">
+        <!-- Initial Loading State before React mounts -->
+        <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: #090D16; color: #06B6D4; font-family: sans-serif;">
+            <div style="text-align: center;">
+                <div style="display: inline-block; width: 40px; height: 40px; border: 3px solid rgba(6, 182, 212, 0.3); border-radius: 50%; border-top-color: #06B6D4; animation: spin 1s ease-in-out infinite;"></div>
+                <p style="margin-top: 16px; font-size: 14px; font-weight: 600; letter-spacing: 1px;">LOADING SOC COMMAND CENTER...</p>
+            </div>
+        </div>
+        <style>
+            @keyframes spin { to { transform: rotate(360deg); } }
+        </style>
+    </div>
+
+    <!-- Application JavaScript Bundle -->
+    <script type="text/babel" src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

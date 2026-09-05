@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Platform - Share & Connect with Sports Enthusiasts</title>
+  <meta name="description" content="A social community platform for sports lovers. Share photos, videos, likes, comments, and connect with athletes worldwide.">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <a href="#feed" class="nav-brand">
+      <div class="nav-brand-icon">⚡</div>
+      <span>SPORTS PLATFORM</span>
+    </a>
+
+    <div class="nav-search">
+      <span class="nav-search-icon">🔍</span>
+      <input type="text" id="global-search-input" placeholder="Search athletes, posts, hashtags..." onkeypress="handleGlobalSearch(event)">
+    </div>
+
+    <nav class="nav-links" id="nav-links-container">
+      <!-- Dynamic Nav Items dynamically populated by app.js -->
+    </nav>
+  </header>
+
+  <!-- Main Workspace Container -->
+  <main class="main-wrapper">
+    <!-- Left Navigation / Quick Links Sidebar -->
+    <aside class="sidebar-left">
+      <div class="widget-card">
+        <h3 class="widget-title">Menu</h3>
+        <a href="#feed" class="nav-item active">🏠 Home Feed</a>
+        <a href="#explore" class="nav-item">🔍 Explore & Search</a>
+        <a href="#upload" class="nav-item">➕ Create Post</a>
+        <a href="#notifications" class="nav-item">🔔 Notifications <span id="sidebar-notif-badge" class="badge" style="display:none;">0</span></a>
+        <a href="#profile" id="sidebar-profile-link" class="nav-item">👤 My Profile</a>
+        <a href="#admin" id="sidebar-admin-link" class="nav-item" style="display:none;">🛡️ Admin Panel</a>
+      </div>
+
+      <div class="widget-card">
+        <h3 class="widget-title">Sports Categories</h3>
+        <div style="display:flex; flex-direction:column; gap:0.4rem;" id="sidebar-categories">
+          <button class="category-pill active" onclick="filterCategory('All')">🏆 All Sports</button>
+          <button class="category-pill" onclick="filterCategory('Cricket')">🏏 Cricket</button>
+          <button class="category-pill" onclick="filterCategory('Football')">⚽ Football</button>
+          <button class="category-pill" onclick="filterCategory('Basketball')">🏀 Basketball</button>
+          <button class="category-pill" onclick="filterCategory('Volleyball')">🏐 Volleyball</button>
+          <button class="category-pill" onclick="filterCategory('Tennis')">🎾 Tennis</button>
+          <button class="category-pill" onclick="filterCategory('Badminton')">🏸 Badminton</button>
+          <button class="category-pill" onclick="filterCategory('Athletics')">🏃 Athletics</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Feed / View Router Target Container -->
+    <section class="feed-container" id="main-view-container">
+      <!-- Views will be dynamically injected here: Feed, Explore, Profile, Upload, Notifications, Admin -->
+      <div style="text-align:center; padding:3rem; color:var(--text-muted);">
+        <h2>Loading Sports Feed...</h2>
+      </div>
+    </section>
+
+    <!-- Right Widgets Sidebar -->
+    <aside class="sidebar-right">
+      <div class="widget-card">
+        <h3 class="widget-title">Trending Hashtags 🔥</h3>
+        <div id="trending-hashtags-list">
+          <p style="font-size:0.85rem; color:var(--text-dim);">Loading trends...</p>
+        </div>
+      </div>
+
+      <div class="widget-card">
+        <h3 class="widget-title">Popular Athletes 🌟</h3>
+        <div id="suggested-users-list">
+          <p style="font-size:0.85rem; color:var(--text-dim);">Loading athletes...</p>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="modal-login">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-login')">&times;</button>
+      <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Welcome Back ⚡</h2>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">Sign in to your Sports Platform account.</p>
+      
+      <form onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label>Username or Email</label>
+          <input type="text" id="login-username" class="form-control" placeholder="Enter username or email" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-primary">Sign In</button>
+        <p style="text-align:center; margin-top:1.25rem; font-size:0.88rem; color:var(--text-muted);">
+          Don't have an account? <a href="#register" onclick="closeModal('modal-login')">Register here</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal-overlay" id="modal-register">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-register')">&times;</button>
+      <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Join Sports Platform 🏆</h2>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">Connect with athletes and share your sports journey.</p>
+      
+      <form onsubmit="handleRegisterSubmit(event)">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="reg-username" class="form-control" placeholder="e.g. alex_runner" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="alex@sports.com" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="reg-password" class="form-control" placeholder="At least 6 characters" required>
+        </div>
+        <div class="form-group">
+          <label>Bio (Optional)</label>
+          <input type="text" id="reg-bio" class="form-control" placeholder="Tell us about your sports passion...">
+        </div>
+        <button type="submit" class="btn-primary">Create Account</button>
+        <p style="text-align:center; margin-top:1.25rem; font-size:0.88rem; color:var(--text-muted);">
+          Already have an account? <a href="#login" onclick="closeModal('modal-register')">Sign In</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Profile Modal -->
+  <div class="modal-overlay" id="modal-edit-profile">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-edit-profile')">&times;</button>
+      <h2 style="font-family:var(--font-heading); margin-bottom:1rem;">Edit Profile</h2>
+      <form onsubmit="handleProfileUpdateSubmit(event)">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="edit-username" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Profile Picture URL</label>
+          <input type="url" id="edit-avatar" class="form-control" placeholder="https://..." required>
+        </div>
+        <div class="form-group">
+          <label>Bio</label>
+          <textarea id="edit-bio" class="form-control" rows="3" placeholder="Update your sports bio..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Post Comments Modal -->
+  <div class="modal-overlay" id="modal-comments">
+    <div class="modal-box" style="max-width:640px;">
+      <button class="modal-close" onclick="closeModal('modal-comments')">&times;</button>
+      <h3 style="font-family:var(--font-heading); margin-bottom:1rem;">Comments</h3>
+      
+      <div id="modal-comments-list" style="max-height:350px; overflow-y:auto; margin-bottom:1rem; display:flex; flex-direction:column; gap:0.75rem;">
+        <!-- Comments injected dynamically -->
+      </div>
+
+      <form onsubmit="handleCommentSubmit(event)" style="display:flex; gap:0.5rem;">
+        <input type="text" id="comment-input" class="form-control" placeholder="Write a comment..." required style="flex:1;">
+        <button type="submit" class="btn-primary" style="width:auto; padding:0 1.25rem;">Post</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- App Script -->
+  <script src="/static/js/app.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

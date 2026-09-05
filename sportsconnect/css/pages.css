@@ -1,0 +1,369 @@
+/* pages.css - Page Specific Styles */
+
+/* ==========================================================================
+   Landing Page
+   ========================================================================== */
+.landing-hero {
+  min-height: 90vh;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md);
+  position: relative;
+  overflow: hidden;
+}
+.landing-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('data:image/svg+xml;utf8,<svg opacity="0.05" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="2"/></svg>') center/cover;
+  z-index: 0;
+}
+.landing-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+.landing-hero__title {
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-md);
+  line-height: 1.1;
+  color: white;
+}
+.landing-hero__subtitle {
+  font-size: var(--text-xl);
+  color: rgba(255,255,255,0.8);
+  margin-bottom: var(--space-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.landing-hero__buttons {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.landing-section {
+  padding: 80px var(--space-md);
+}
+.landing-section:nth-child(even) {
+  background-color: var(--surface);
+}
+.landing-section__header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+.landing-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+}
+.landing-feature-card {
+  text-align: center;
+  padding: var(--space-xl);
+}
+.landing-feature-icon {
+  font-size: 48px;
+  margin-bottom: var(--space-md);
+}
+.landing-cta {
+  background: linear-gradient(45deg, var(--accent) 0%, var(--accent-light) 100%);
+  color: white;
+  text-align: center;
+  padding: 100px var(--space-md);
+}
+.landing-footer {
+  background-color: var(--dark-bg);
+  color: rgba(255,255,255,0.7);
+  padding: 60px var(--space-md) 20px;
+}
+.landing-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  text-align: center;
+}
+
+/* ==========================================================================
+   Auth Pages
+   ========================================================================== */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg);
+  padding: var(--space-md);
+}
+.auth-card {
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  width: 100%;
+  max-width: 440px;
+  padding: var(--space-2xl);
+}
+.auth-card__header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+.auth-card__logo {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--primary);
+  margin-bottom: var(--space-xs);
+}
+.auth-card__footer {
+  margin-top: var(--space-xl);
+  text-align: center;
+  font-size: var(--text-sm);
+}
+.auth-role-select {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+.auth-role-card {
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.auth-role-card.selected {
+  border-color: var(--primary);
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* ==========================================================================
+   Profile Page
+   ========================================================================== */
+.profile-header {
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-lg);
+  border: 1px solid var(--border);
+}
+.profile-cover {
+  height: 200px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  position: relative;
+}
+@media (min-width: 768px) {
+  .profile-cover { height: 280px; }
+}
+.profile-avatar-container {
+  position: absolute;
+  bottom: -60px;
+  left: var(--space-xl);
+}
+.profile-avatar {
+  border: 4px solid var(--surface);
+}
+.profile-info {
+  padding: 70px var(--space-xl) var(--space-lg);
+}
+.profile-name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+.profile-stats {
+  display: flex;
+  gap: var(--space-xl);
+  margin: var(--space-md) 0;
+}
+.profile-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+.profile-stat-value {
+  font-weight: var(--weight-bold);
+  font-size: var(--text-lg);
+}
+.profile-tabs {
+  padding: 0 var(--space-lg);
+}
+
+/* ==========================================================================
+   Discovery Page
+   ========================================================================== */
+.discovery-layout {
+  display: flex;
+  gap: var(--space-lg);
+}
+.discovery-filters-panel {
+  width: 250px;
+  flex-shrink: 0;
+}
+.discovery-results-area {
+  flex: 1;
+}
+.discovery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+@media (max-width: 768px) {
+  .discovery-layout {
+    flex-direction: column;
+  }
+  .discovery-filters-panel {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Messages Page
+   ========================================================================== */
+.messages-layout {
+  display: flex;
+  height: calc(100vh - var(--navbar-height) - 40px);
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.messages-list {
+  width: 300px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+.messages-list-header {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--border);
+}
+.messages-list-items {
+  flex: 1;
+  overflow-y: auto;
+}
+.message-thread-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-md);
+  gap: var(--space-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  border-bottom: 1px solid var(--border-light);
+}
+.message-thread-item:hover {
+  background-color: var(--surface-hover);
+}
+.message-thread-item.active {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+.messages-chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.chat-header {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.chat-messages {
+  flex: 1;
+  padding: var(--space-md);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  background-color: var(--bg);
+}
+.message-bubble-container {
+  display: flex;
+  max-width: 70%;
+}
+.message-bubble-container--sent {
+  align-self: flex-end;
+}
+.message-bubble-container--received {
+  align-self: flex-start;
+}
+.message-bubble {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+}
+.message-bubble--sent {
+  background-color: var(--primary);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+.message-bubble--received {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 4px;
+}
+.chat-input-area {
+  padding: var(--space-md);
+  border-top: 1px solid var(--border);
+  background-color: var(--surface);
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* ==========================================================================
+   Admin Dashboard
+   ========================================================================== */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+.admin-stat-card {
+  background-color: var(--surface);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+.admin-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+.admin-table-container {
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.admin-table th, .admin-table td {
+  padding: var(--space-md);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.admin-table th {
+  background-color: var(--surface-hover);
+  font-weight: var(--weight-semibold);
+}
