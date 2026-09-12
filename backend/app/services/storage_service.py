@@ -3,7 +3,8 @@ import uuid
 import aiofiles
 from fastapi import UploadFile
 
-UPLOAD_DIR = os.getenv("MEDIA_DIR", "./uploads")
+is_vercel = os.getenv("VERCEL") == "1" or os.environ.get("VERCEL_ENV") is not None
+UPLOAD_DIR = "/tmp/uploads" if is_vercel else os.getenv("MEDIA_DIR", "./uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 class StorageService:

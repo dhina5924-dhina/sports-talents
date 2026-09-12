@@ -36,7 +36,8 @@ app.add_middleware(
 )
 
 # Ensure uploads folder exists
-UPLOAD_DIR = os.getenv("MEDIA_DIR", "./uploads")
+is_vercel = os.getenv("VERCEL") == "1" or os.environ.get("VERCEL_ENV") is not None
+UPLOAD_DIR = "/tmp/uploads" if is_vercel else os.getenv("MEDIA_DIR", "./uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 
